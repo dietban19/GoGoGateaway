@@ -1,10 +1,22 @@
+/*
+ * Itineraries file
+ * Gives us a page of old itineraries for a specific city that user can save
+ */
+
+
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import dumdum from '../../dummyData/dumdum.json';
 import ItineraryComments from './ItineraryComments';
+
 // import itinerary from '../../dummyData/dumdum.json';
 import itinerariesDummy from '../../dummyData/dummyItinerary.json';
 import axios from 'axios';
+
+//imports for picture slideshow
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
+
 export default function Itinerary() {
   const location = useLocation();
   const [itinerary, setItinerary] = useState(null);
@@ -59,13 +71,29 @@ export default function Itinerary() {
     month: 'long',
     day: 'numeric',
   });
+
+
+  //*******************************************************************************
+  //PAGE STARTS HERE with components added
   return (
     <>
       <div className="px-40 py-8">
-        <div className="text-4xl font-bold">Name: {itinerary.name}</div>
-        <div className="p-4">
+        <div className="text-4xl font-bold">{itinerary.name}</div>
+        <div className="p-4">    
+        <div className="px-40 py-8">
+
+        {/*INSERT image slideshow */}
+      <Slide>
+        {itinerary.images.map((image, index) => (
+           <div className="flex items-center justify-center bg-cover h-96" style={{ backgroundImage: `url(${image})` }} key={index}>
+          </div>
+        ))}
+      </Slide>
+      
+      {/*DETAILS*/}
+      </div>
           <h1 className="mb-4 text-xl font-bold">Itinerary Details</h1>
-          <div classname="text-xl">sdfg</div>
+          <div classname="text-xl">ur mom is my dad</div>
           <div className="mb-4">
             <h2 className="text-lg font-semibold">General Information</h2>
             <p>
@@ -91,19 +119,6 @@ export default function Itinerary() {
 
           </div>
 
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold">Images</h2>
-            <div className="flex space-x-2">
-              {itinerary.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt="Itinerary Image"
-                  className="h-56 w-56 object-cover"
-                />
-              ))}
-            </div>
-          </div>
 
           <div className="mb-4">
             <h2 className="text-lg font-semibold">Restaurants</h2>

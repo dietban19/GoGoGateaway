@@ -18,8 +18,16 @@
         "time": "10:52",
         "restaurantID": "[DocumentReference]",
         "priceRestaurant": 23
+      },
+      {
+        "locationRestaurant": "20",
+        "cuisine": "arab",
+        "time": "15:25",
+        "restaurantID": "[DocumentReference]",
+        "priceRestaurant": 23
       }
     ],
+    
     "hotel": {
       "bookingURL": "12",
       "priceHotel": 3,
