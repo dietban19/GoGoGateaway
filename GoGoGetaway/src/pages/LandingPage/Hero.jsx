@@ -40,7 +40,7 @@ const Hero = () => {
 
           <div className="text-lg font-normal text-secondary-text">
             Craft your dream trip with personalized recommendations and
-            interactive maps tailored just for you. 
+            interactive maps tailored just for you. and more
           </div>
         </div>
         {/* <SearchBar /> */}
