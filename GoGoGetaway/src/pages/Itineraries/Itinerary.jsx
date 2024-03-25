@@ -93,35 +93,37 @@ export default function Itinerary() {
       {/*DETAILS*/}
       </div>
           <h1 className="mb-4 text-xl font-bold">Itinerary Details</h1>
-          <div classname="text-xl">ur mom is my dad</div>
+
+
+          <div className="flex justify-center">
+  <div className="mb-4 border-2 border-black rounded-lg p-4 w-full bg-gray-200"> 
+    <h2 className="text-lg font-semibold">General Information</h2>
+    <p>
+      <strong>Date:</strong> {new Date(itinerary.date).toLocaleString()}
+    </p>
+    <p>
+      <strong>City:</strong> {itinerary.city}
+    </p>
+    <p>
+      <strong>Total Price:</strong> ${itinerary.totalPrice}
+    </p>
+    <p>
+      <strong>Like Count:</strong> {itinerary.likeCount}
+    </p>
+    <p>
+      <strong>Comment Count:</strong> {itinerary.commentCount}
+    </p>
+    <button onClick={toggleComments} className="comment-button">
+      {showComments ? 'Hide Comments' : 'Show Comments'}
+    </button>
+    {showComments && <ItineraryComments itineraryId={itinerary.id} />}
+  </div>
+</div>
+
+
+
           <div className="mb-4">
-            <h2 className="text-lg font-semibold">General Information</h2>
-            <p>
-              <strong>Date:</strong> {new Date(itinerary.date).toLocaleString()}
-            </p>
-            <p>
-              <strong>City:</strong> {itinerary.city}
-            </p>
-            <p>
-              <strong>Total Price:</strong> ${itinerary.totalPrice}
-            </p>
-
-            <p>
-              <strong>Like Count:</strong> {itinerary.likeCount}
-            </p>
-            <p>
-              <strong>Comment Count:</strong> {itinerary.commentCount}
-            </p>
-            <button onClick={toggleComments} className="comment-button">
-              {showComments ? 'Hide Comments' : 'Show Comments'}
-            </button>
-            {showComments && <ItineraryComments itineraryId={itinerary.id} />}
-
-          </div>
-
-
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold">Restaurants</h2>
+            <h2 className="text-lg font-semibold">Restaurants &#127869;</h2>
             {itinerary.restaurants.map((restaurant, index) => (
               <div key={index} className="mb-2">
                 <p>
@@ -145,7 +147,11 @@ export default function Itinerary() {
           </div>
 
           <div className="mb-4">
-            <h2 className="text-lg font-semibold">Hotel</h2>
+            <h2 className="text-lg font-semibold">Hotel &#x1F3E8;
+
+
+</h2>
+
             <p>
               <strong>Booking URL:</strong> {itinerary.hotel.bookingURL}
             </p>
@@ -165,7 +171,7 @@ export default function Itinerary() {
           </div>
 
           <div className="mb-4">
-            <h2 className="text-lg font-semibold">Events</h2>
+            <h2 className="text-lg font-semibold">Events 	&#127796;</h2>
             {itinerary.events.map((event, index) => (
               <div key={index} className="mb-2">
                 <p>
