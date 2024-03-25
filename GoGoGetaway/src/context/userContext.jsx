@@ -45,12 +45,13 @@ export const UserProvider = ({ children }) => {
   const [error, setError] = useState(null);
   /* if a user signs in through google, and their google account is a new user,  it will add to the firebase database*/
   async function addNewGoogleUser(result) {
-    console.log(result);
+    // Assuming result.user contains photoURL after Google sign-in
+    const photoURL = result.user.photoURL || ''; // Fallback to empty string if undefined
     const addUserData = {
       username: result.user.email.split('@')[0],
       id: result.user.uid,
       email: result.user.email,
-      photoURL: '',
+      photoURL: photoURL, // Use the photoURL from Google
       loggedIn: true,
       firstName: '',
       lastName: '',
@@ -104,6 +105,7 @@ export const UserProvider = ({ children }) => {
     setLoadingAuthState(true);
     try {
       const result = await signInWithPopup(auth, provider);
+      addOrUpdateGoogleUser(result);
       const userData = getAdditionalUserInfo(result);
       // Check if the user is signing in for the first time
       if (userData && userData.isNewUser) {
@@ -128,6 +130,25 @@ export const UserProvider = ({ children }) => {
       console.log(error.message);
     }
   };
+
+  async function addOrUpdateGoogleUser(result) {
+    const userDataFromGoogle = {
+      username: result.user.email.split('@')[0],
+      id: result.user.uid,
+      email: result.user.email,
+      photoURL: result.user.photoURL || '', // Capture the photoURL from Google sign-in
+      loggedIn: true,
+      firstName: result.user.displayName?.split(' ')[0] || '', // Optional: Capture first name from displayName
+      lastName: result.user.displayName?.split(' ').slice(1).join(' ') || '', // Optional: Capture last name from displayName
+      googleUser: true,
+      // Include any other user fields you want to capture or update
+    };
+
+    const userDocRef = doc(db, 'users', result.user.uid);
+
+    // Use setDoc with { merge: true } to update the existing document or create a new one without overwriting other fields
+    await setDoc(userDocRef, userDataFromGoogle, { merge: true });
+  }
 
   // function for logout
   const logout = async () => {
@@ -227,18 +248,20 @@ export const UserProvider = ({ children }) => {
   // When an auth state change is detected, it performs checks and sets the details of user to 'user'
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (authUser) => {
+      setLoadingAuthState(true); // Indicate that loading of auth state has begun
       try {
-        setLoadingAuthState(true);
         if (authUser) {
-          setUser(authUser);
-          const userDocRef = doc(db, 'users', authUser.uid);
-          const userDoc = await getDoc(userDocRef);
+          // User is signed in
+          setUser(authUser); // Set the global user state to the authenticated user
+          const userDocRef = doc(db, 'users', authUser.uid); // Reference to the Firestore document
+          const docSnapshot = await getDoc(userDocRef); // Fetch the document
 
-          if (userDoc.exists()) {
-            // Set the user data from Firestore
-            setCurrentUser(userDoc.data());
+          // Check if the Firestore document exists
+          if (docSnapshot.exists()) {
+            // Document exists, set currentUser to the document data
+            setCurrentUser(docSnapshot.data());
           } else {
-            // User is authenticated but not in Firestore (should handle this case)
+            // Document does not exist, handle this case (e.g., user authenticated but not in Firestore)
             setCurrentUser(null);
           }
         } else {
@@ -248,14 +271,13 @@ export const UserProvider = ({ children }) => {
       } catch (err) {
         console.error('Error during authentication state change:', err);
       } finally {
-        setTimeout(() => {
-          setLoadingAuthState(false);
-        }, 100); // 1000 milliseconds delay
+        setLoadingAuthState(false); // Indicate that loading of auth state is complete
       }
     });
 
+    // Cleanup function to unsubscribe from the auth state listener when the component unmounts
     return () => unsubscribe();
-  }, []);
+  }, []); // Empty dependency array means this effect runs once on mount
 
   const updateUser = async (updatedUserDetails) => {
     if (!user) {

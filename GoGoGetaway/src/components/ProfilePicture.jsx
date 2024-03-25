@@ -18,7 +18,7 @@ const ProfilePicture = () => {
       {isGoogleUser && !imageError ? (
         // If a Google user and no image error, display the profile image
         <img
-          src={user.photoURL}
+          src={currentUser.photoURL}
           onError={handleImageError}
           alt="Profile"
           className="w-12 rounded-full"
