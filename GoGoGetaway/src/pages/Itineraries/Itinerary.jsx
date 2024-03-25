@@ -91,7 +91,7 @@ export default function Itinerary() {
           <h1 className="mb-4 mt-7 text-3xl font-bold">Itinerary Details</h1>
   
           <div className="flex justify-center mb-4">
-            <div className="border-2 border-black rounded-lg p-4 w-full bg-gray-200"> 
+            <div className="border-2 border-gray-400 rounded-lg p-4 w-full"> 
               <h2 className="text-xl mb-5 font-semibold">General Information</h2>
               <p>
                 <strong>Date:</strong> {new Date(itinerary.date).toLocaleString()}
@@ -148,7 +148,7 @@ export default function Itinerary() {
   
           {/* Hotel section */}
           <div className="mb-4">
-            <h2 className="text-2xl mb-5 font-semibold">Hotel &#x1F3E8;</h2>
+            <h2 className="text-2xl mb-5 font-semibold">Hotels &#x1F3E8;</h2>
             <p>
               <strong>Booking URL:</strong> {itinerary.hotel.bookingURL}
             </p>
