@@ -116,32 +116,49 @@ router.post("/create", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-router.post('/users/:userId/remove-saved-itinerary', async (req, res) => {
-  const { userId } = req.params; // Extract userId from URL parameters
-  const { itineraryId } = req.body; // Extract itineraryId from request body
+router.delete("/itineraries/users/:username/remove-saved-itinerary/:itineraryId", async (req, res) => {
+  const { username, itineraryId } = req.params;
+  console.log(`Attempting to remove itineraryId: ${itineraryId} for username: ${username}`);
 
   try {
-    // Reference to the user's document in the 'users' collection
-    const userRef = db.collection('users').doc(userId);
-    // Fetch the document to check if the user exists
-    const userDoc = await userRef.get();
+    // Query the 'users' collection for a document with the matching 'username'
+    const usersQuerySnapshot = await db.collection("users").where("username", "==", username.trim()).get();
 
-    if (!userDoc.exists) {
-      // If the user document does not exist, return a 404 error
-      console.log(`User not found with ID: ${userId}`);
+    if (usersQuerySnapshot.empty) {
+      console.log("User not found with username:", username);
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Atomically remove the itinerary ID from the 'savedItineraries' array field
-    await userRef.update({
-      savedItineraries: admin.firestore.FieldValue.arrayRemove(itineraryId)
+    // Assuming usernames are unique, there should only be one matching document
+    const userDoc = usersQuerySnapshot.docs[0];
+    const userId = userDoc.id;
+    console.log(`User found with ID: ${userId}`);
+
+    // Atomically remove the itineraryId from the 'savedItineraries' array field in the user's document
+    await db.collection("users").doc(userId).update({
+      savedItineraries: admin.firestore.FieldValue.arrayRemove(itineraryId),
     });
 
-    console.log(`Itinerary ID ${itineraryId} removed from user ID ${userId}'s saved itineraries`);
-    res.json({ message: 'Itinerary removed successfully from saved itineraries' });
+    console.log(`ItineraryId: ${itineraryId} removed successfully for userId: ${userId}`);
+    res.status(200).json({ message: "Itinerary removed successfully from saved itineraries." });
   } catch (error) {
-    console.error(`Error removing saved itinerary for user ID ${userId}: ${error.message}`);
-    res.status(500).json({ message: error.message || "Error Occurred while removing itinerary from saved itineraries" });
+    console.error("Error removing itinerary from saved itineraries:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+router.get("/itineraries/user/:username", async (req, res) => {
+  const { username } = req.params;
+  try {
+    const itinerariesSnapshot = await db.collection("itineraries").where("username", "==", username).get();
+    if (itinerariesSnapshot.empty) {
+      return res.status(404).json({ error: "No itineraries found for this user" });
+    }
+    const itineraries = itinerariesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    res.json(itineraries);
+  } catch (error) {
+    console.error("Error fetching itineraries by username:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 router.post("/users/:userId/save-itinerary", async (req, res) => {
