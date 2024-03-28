@@ -1,0 +1,352 @@
+{
+  "id": "81c9699c-94a9-4c6d-bb44-6e2391d57453",
+  "version": "2.0",
+  "name": "Itinerary Creation",
+  "url": "https://gogogateaway-3yvuhaorjq-uc.a.run.app",
+  "tests": [{
+    "id": "4fe992b2-23c0-47a6-bfc0-157dda63a66b",
+    "name": "Creating Itinerary (Not Logged In)",
+    "commands": [{
+      "id": "1b8be9e7-deeb-4807-9f0c-bd5319adf42d",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1a05b249-a9ef-4871-83cd-8ff2a901f690",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x814",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "461e1c1e-a373-434a-9301-e831badbe7cc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9df62c8d-0f6c-4d70-bb83-e277b5ae3a0a",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "86958189-0c3c-422d-99d6-a5daf7f70016",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ba99ad2-0ded-43fd-a14b-8b36f3105e0d",
+      "comment": "",
+      "command": "type",
+      "target": "id=city",
+      "targets": [
+        ["id=city", "id"],
+        ["css=#city", "css:finder"],
+        ["xpath=//input[@id='city']", "xpath:attributes"],
+        ["xpath=//div[@id='radix-:r1:']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Rome"
+    }, {
+      "id": "ba9ece74-5323-4653-8913-011494268b28",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex-col-reverse > .md\\3Atext-xl",
+      "targets": [
+        ["css=.flex-col-reverse > .md\\3Atext-xl", "css:finder"],
+        ["xpath=(//button[@type='button'])[5]", "xpath:attributes"],
+        ["xpath=//div[@id='radix-:r1:']/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Changes')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "96a87708-58ba-4d6b-8c41-0dabef8dfdc6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bg-amber-500",
+      "targets": [
+        ["css=.bg-amber-500", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/div[2]/div[2]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Itinerary')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e60877a0-1027-494a-8ce3-758b827151d9",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.font-bold:nth-child(1)",
+      "targets": [
+        ["css=.font-bold:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div[2]/div/div", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]/div/div", "xpath:position"]
+      ],
+      "value": "Hold on a second..."
+    }]
+  }, {
+    "id": "fa0ae51c-48c8-4840-9e95-466aa5ba011f",
+    "name": "Saving Incomplete Itinerary (Logged In)",
+    "commands": [{
+      "id": "414e0d2a-3dc7-44b9-b9ac-5fa2bfd5c97a",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "44f945e3-2fe8-4a35-81aa-31e9de690768",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x814",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1d3b9c51-1249-4058-8c6c-459e13fad881",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-lg:nth-child(1)",
+      "targets": [
+        ["css=.text-lg:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button/div", "xpath:idRelative"],
+        ["xpath=//button/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1b4dade4-aa18-4afe-bad2-9b30fde8c278",
+      "comment": "",
+      "command": "type",
+      "target": "id=city",
+      "targets": [
+        ["id=city", "id"],
+        ["css=#city", "css:finder"],
+        ["xpath=//input[@id='city']", "xpath:attributes"],
+        ["xpath=//div[@id='radix-:r3:']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Rome"
+    }, {
+      "id": "3537e663-b4ee-455a-80e8-a839e079d94d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex-col-reverse > .md\\3Atext-xl",
+      "targets": [
+        ["css=.flex-col-reverse > .md\\3Atext-xl", "css:finder"],
+        ["xpath=(//button[@type='button'])[6]", "xpath:attributes"],
+        ["xpath=//div[@id='radix-:r3:']/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Changes')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9b3fab63-5bd3-42dc-8586-a5b47ab10ddd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-fill",
+      "targets": [
+        ["css=.btn-fill", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/div[2]/div[2]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Itinerary')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "232d8659-1cd2-4281-83f4-22aed28fb7ad",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.grid > .font-semibold",
+      "targets": [
+        ["css=.grid > .font-semibold", "css:finder"],
+        ["xpath=//div[@id='root']/div[3]/ol/li/div/div", "xpath:idRelative"],
+        ["xpath=//li/div/div", "xpath:position"]
+      ],
+      "value": "Missing Information"
+    }]
+  }, {
+    "id": "69e84235-eb40-495b-bcc0-cba14a8f240f",
+    "name": "Creating Full Itinerary (Logged In)",
+    "commands": [{
+      "id": "dee6aaa8-3e74-4503-a481-3b5010299c04",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1f33b6a7-d2df-4f79-ab4f-beadc2c3df1a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x814",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0277af26-313e-4761-89ca-5a287f0feefa",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-lg:nth-child(1)",
+      "targets": [
+        ["css=.text-lg:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button/div", "xpath:idRelative"],
+        ["xpath=//button/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae08276c-ce5e-4a0b-b30e-7d06b214d36c",
+      "comment": "",
+      "command": "type",
+      "target": "id=city",
+      "targets": [
+        ["id=city", "id"],
+        ["css=#city", "css:finder"],
+        ["xpath=//input[@id='city']", "xpath:attributes"],
+        ["xpath=//div[@id='radix-:r3:']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Rome"
+    }, {
+      "id": "e021ceb1-c54e-4315-9881-225a15eeca3d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex-col-reverse > .md\\3Atext-xl",
+      "targets": [
+        ["css=.flex-col-reverse > .md\\3Atext-xl", "css:finder"],
+        ["xpath=(//button[@type='button'])[6]", "xpath:attributes"],
+        ["xpath=//div[@id='radix-:r3:']/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Changes')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "12cd8679-3da5-4af3-a85e-1e6a54032010",
+      "comment": "",
+      "command": "click",
+      "target": "css=.h-8",
+      "targets": [
+        ["css=.h-8", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "2d5824df-40fe-478e-b67c-d3f7aee9ac42",
+      "comment": "",
+      "command": "click",
+      "target": "css=html",
+      "targets": [
+        ["css=html", "css:finder"],
+        ["xpath=//html", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a95a10c-4d45-48d0-8654-d3daebfa47f1",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c0b869a7-343f-45b4-86fc-32cd8ebc0632",
+      "comment": "",
+      "command": "click",
+      "target": "css=.w-44",
+      "targets": [
+        ["css=.w-44", "css:finder"],
+        ["xpath=//img[@alt='logo']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/img", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "827806b0-1e48-4e67-ae00-70f76099a249",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "42bddd76-034a-4e12-8b4e-1da94f986a28",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4141b083-12d9-4056-bca9-75055ea8f977",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7656f2ad-679d-450e-8d5e-9baf5681e8a6",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0d84cc82-36b0-4317-924c-7a0bf5bbae4f",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e4d76b1f-6bf1-4e31-9e8d-42c8c870fefb",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f527409d-9494-4e7b-8f4a-b09e4365d975",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,100)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "814156d8-1471-428a-92e8-ea27560503f3",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.mx\\3Apx-20:nth-child(3) .h-\\[39rem\\] > .z-10",
+      "targets": [
+        ["css=.mx\\3Apx-20:nth-child(3) .h-\\[39rem\\] > .z-10", "css:finder"],
+        ["xpath=//img[contains(@src,'http://res.cloudinary.com/dx0n3s9h4/image/upload/v1711588068/GOGO/lxnwzmo4oednesptyz5r.jpg')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div[2]/div/div[2]/div/div/div[3]/div/div/div/img", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "c8ea3e0d-fa70-4a8d-b66b-4702edc85da0",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://gogogateaway-3yvuhaorjq-uc.a.run.app/"],
+  "plugins": []
+}
